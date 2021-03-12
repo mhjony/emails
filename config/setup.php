@@ -5,7 +5,7 @@ require_once 'database.php';
 try{
 	$con = new PDO("mysql:host=$DB_DSN;", $DB_USER, $DB_PASSWORD);
 	$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	$sqlQuery = "CREATE DATABASE IF NOT EXISTS liana";
+	$sqlQuery = "CREATE DATABASE IF NOT EXISTS $DB_NAME";
 	$con->exec($sqlQuery);
 }
 catch(PDOException $e){
