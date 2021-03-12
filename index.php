@@ -5,16 +5,16 @@ require_once 'collection.php';
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>Web Form</title>
+		<title>Subscribe Form</title>
         <link rel="stylesheet" href="./css/style.css">
 	</head>
 	<body>
         <div class="contact-box">
             <form id="login-form" class="form" action="" method="POST">
-                <input type="text" name="fullname" class="input-field" placeholder="Your name">
-                <input type="text" name="email" class="input-field" placeholder="Your email">
+                <input type="text" name="fullname" class="input-field" placeholder="Your name" required>
+                <input type="text" name="email" class="input-field" placeholder="Your email" required>
                 <input type="submit" name="subscribe" class="btn" value="Subscribe">
-                <?php if (count($errors) > 0)
+                <?php if (count($errors) > 0 && isset($_POST["subscribe"]))
                     {
                         ?>
                             <div class="form-group" style="color: red">
@@ -33,7 +33,7 @@ require_once 'collection.php';
                         ?>
                             <div class="form-group" style="color: green">
                                 <ul style="list-style-type:none;">
-                                    <li><?php echo "You have subscribed in our website" ?></li>
+                                    <li><?php echo "Congratulations! You have subscribed in our website." ?></li>
                                 </ul>
                             </div>
                         <?php

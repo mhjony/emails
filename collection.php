@@ -6,6 +6,7 @@ $success = false;
 
 /*
 ** Sanitizing the user input
+** Checking the user email address if it's valid or not
 */
 if ($_POST["fullname"] != "" && $_POST["email"] != "")
 {
@@ -40,11 +41,27 @@ if (isset($_POST["subscribe"]) && count($errors) == 0 && $_POST["fullname"] != "
         $name = $var_name;
         $email = $var_email;
 
-        $sql = "INSERT INTO `users` (`name`, `email`) VALUES (?, ?)";
-		$stmt= $con->prepare($sql);
-		$result = $stmt->execute([$name, $email]);
-        if ($result)
-            $success = true;
+		$result = $con->prepare("SELECT * FROM users");
+		$result->execute();
+		$rows = $result->fetchAll();
+		$count = 0;
+
+		foreach ($rows as $row)
+		{
+			if ($row['email'] == $email)
+			{
+				$count = 1;
+				array_push($errors,"You already subscribed our website with this email.");
+			}
+		}
+		if ($count == 0)
+		{
+			$sql = "INSERT INTO `users` (`name`, `email`) VALUES (?, ?)";
+			$stmt= $con->prepare($sql);
+			$result = $stmt->execute([$name, $email]);
+			if ($result)
+				$success = true;
+		}
     }
 }
 ?>
