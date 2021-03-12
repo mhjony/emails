@@ -1,5 +1,6 @@
 # Valid email address
 This is a small web application which allows user to submit their valid email address.
+The deployment version of this app is [here](https://lianademo.herokuapp.com/) on Heroku.
 
 ## Installations instructions
 1. A web server with PHP support e.g. mamp <br />
