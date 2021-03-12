@@ -1,4 +1,4 @@
-# emails
+# Valid email address
 This is a small web application which allows user to submit their valid email address.
 
 ## Installations instructions
